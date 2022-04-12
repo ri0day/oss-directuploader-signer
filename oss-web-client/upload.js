@@ -137,7 +137,7 @@ function set_upload_param(up, filename, ret)
         'success_action_status' : '200', //让服务端返回200,不然，默认会返回204
         //'callback' : callbackbody,
         'signature': signature,
-        'x-oss-security-token': sec_token //sts里面accesskeysecret作为因子加密的signature,要传x-oss-security-token
+        'x-oss-security-token': sec_token //sts里面accesskeysecret签名的signature,要传x-oss-security-token参数给oss
     };
 
     up.setOption({

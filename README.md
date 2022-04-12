@@ -12,8 +12,8 @@ https://help.aliyun.com/document_detail/31926.html
 
 #### 此demo怎么解决这个问题(工作原理):  
 1. 将操作oss的role授权给运行签名服务的ecs服务器,这样签名程序可以使用ecs的metadata获取到临时的sts credential包含accesskey,accesskeysecret,security_token,不用配置静态的accesskey 到代码里面.解决静态配置的问题,也解决直接看得到凭证明文的问题 
-2. 签名程序还是按照正常的签名逻辑运行,使用从metadata url里面获取到的accesskeysecret作为因子去生成signature  
-3. 由于是使用sts token里面的 accesskeysecret作为因子生成的signature,因此要多传一个`x-oss-security-token`参数到最终的params里面
+2. 签名程序还是按照正常的签名逻辑运行,使用从metadata url里面获取到的accesskeysecret去签名signature,最后生成签过名的signature  
+3. 由于是使用sts token里面的 accesskeysecret签名的signature,因此要多传一个`x-oss-security-token`参数到最终的params里面
 
 #### 此demo的限制:
 - 只能在阿里云环境内运行,因为使用了instance role的授权方式.而官方的demo可以在阿里云环境以外运行.
